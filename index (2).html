@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glyco Oliva — Watch the Video</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://play.tynk.ai">
+<link rel="dns-prefetch" href="https://play.tynk.ai">
+<link rel="prerender" href="https://play.tynk.ai/p/6c094cea-df1e-4188-8e6f-ebef14304b7e">
+<style>
+  :root{
+    --ink:#1A1A1A; --ink-soft:#4A4A4A; --ink-faint:#7A7A7A;
+    --bg:#FFFFFF; --soft:#F6F6F4; --line:#E4E4E0;
+    --red:#D32F2F; --green:#1DA851; --green-dp:#178F45;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{overscroll-behavior:none}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+  /* RED BAR */
+  .topwarn{background:var(--red);color:#fff;text-align:center;padding:12px 16px;font-weight:700;font-size:14px;line-height:1.4}
+  .topwarn b{font-weight:800}
+
+  .wrap{max-width:640px;margin:0 auto;padding:30px 20px 60px}
+
+  /* COPY ABOVE VIDEO */
+  h1{font-size:24px;font-weight:700;line-height:1.25;text-align:left;letter-spacing:-.3px;margin-bottom:10px}
+  .subhead{text-align:left;font-size:15px;line-height:1.5;color:var(--ink-soft);font-weight:400;margin-bottom:20px}
+
+  /* VIDEO */
+  .vslframe{position:relative;width:100%;aspect-ratio:4/5;border-radius:8px;overflow:hidden;background:#111;border:1px solid var(--line);margin-bottom:24px}
+  .vslframe iframe{width:100%;height:100%;border:0;display:block}
+
+  /* LOCKED */
+  .lock{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:18px;font-size:15px;color:var(--ink-soft);text-align:center}
+  .lock .sp{width:16px;height:16px;border:2px solid var(--line);border-top-color:var(--ink-faint);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* OFFER (revealed) */
+  #offer{display:none}
+
+  /* CTA BUTTON */
+  .cta-accept{display:block;width:100%;border:none;cursor:pointer;background:var(--green);color:#fff;
+    font-weight:800;font-size:22px;padding:22px 18px;border-radius:8px;text-align:center;text-decoration:none;line-height:1.25;
+    box-shadow:0 4px 0 var(--green-dp);transition:transform .06s}
+  .cta-accept:active{transform:translateY(2px);box-shadow:0 2px 0 var(--green-dp)}
+
+  /* TIMER 10 MIN */
+  .timer{display:flex;align-items:center;justify-content:center;gap:9px;margin:14px 0 0;font-size:14px;color:var(--ink-soft);font-weight:600}
+  .timer .clock{font-variant-numeric:tabular-nums;font-weight:800;font-size:16px;color:var(--red);background:#FDECEC;padding:3px 10px;border-radius:5px}
+
+  @media(max-width:480px){
+    .topwarn{font-size:12.5px;font-weight:600;padding:10px 14px}
+    .topwarn b{font-weight:700}
+    .wrap{padding:22px 18px 50px}
+    h1{font-size:19px}
+    .subhead{font-size:13.5px;margin-bottom:16px}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- RED BAR -->
+<div class="topwarn"><b>Close this page</b> if you've already accepted living worried about your blood sugar every single day.</div>
+
+<div class="wrap">
+
+  <!-- COPY ABOVE VIDEO -->
+  <h1>How This Asian Man Discovered a Blend of 5 Natural Ingredients That Helped His Wife Maintain Healthy Blood Sugar Levels*</h1>
+  <div class="subhead">"My wife felt unwell at our 5-year-old granddaughter's birthday party. Alongside her doctor's care, we added this blend to her routine — and one year later, she enjoyed the birthday cake with far more peace of mind."</div>
+
+  <!-- VIDEO -->
+  <div class="vslframe" id="vslFrame">
+    <iframe src="https://play.tynk.ai/p/6c094cea-df1e-4188-8e6f-ebef14304b7e"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+
+  <!-- LOCKED until reveal -->
+  <div class="lock" id="lock"><span class="sp"></span> Watch the video to unlock your offer</div>
+
+  <!-- ===== OFFER (revealed after 59 min) ===== -->
+  <div id="offer">
+    <a class="cta-accept" href="https://glycooliva.com/dtc-b/?afid=TbnvqF8LaL">BUY NOW!</a>
+    <div class="timer">⏳ This offer expires in <span class="clock" id="clock">10:00</span></div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const REVEAL_DELAY_MS = 3540000; // 59 minutes
+  const lock=document.getElementById('lock'), offer=document.getElementById('offer');
+  let revealed=false;
+  function reveal(){
+    if(revealed) return; revealed=true;
+    lock.style.display='none'; offer.style.display='block';
+    startClock(); offer.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  window.upReveal = reveal;
+  const obs=new MutationObserver(()=>{ if(getComputedStyle(offer).display!=='none') reveal(); });
+  obs.observe(offer,{attributes:true,attributeFilter:['style']});
+  setTimeout(reveal, REVEAL_DELAY_MS);
+  function startClock(){
+    let t=10*60; const el=document.getElementById('clock');
+    const iv=setInterval(()=>{ t--; if(t<0){clearInterval(iv);return;}
+      el.textContent=String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); },1000);
+  }
+})();
+</script>
+
+<!-- Repassa os parâmetros da URL (cid, utm, etc.) para os links de compra -->
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  if (!params.toString()) return;
+  var HOSTS = ['glycooliva.com', 'mycartpanda.com'];
+  function addParams(url) {
+    try {
+      var u = new URL(url, window.location.href);
+      var ok = HOSTS.some(function (h) { return u.hostname === h || u.hostname.endsWith('.' + h); });
+      if (!ok) return url;
+      params.forEach(function (value, key) {
+        if (!u.searchParams.has(key)) u.searchParams.set(key, value);
+      });
+      return u.toString();
+    } catch (e) { return url; }
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (a) a.href = addParams(a.getAttribute('href'));
+  }, true);
+})();
+</script>
+</body>
+</html>
